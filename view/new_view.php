@@ -6,8 +6,8 @@
   </head>
   <body>
     <form action="./" method="post">
-    Nombre: <input type="text" name="first_name"><br>
-    Apellido: <input type="text" name="second_name"><br>
+    Nombre: <input type="text" name="nombre"><br>
+    Apellido: <input type="text" name="apellido"><br>
     <input type="submit" value="INGRESAR">
     </form>
   </body>

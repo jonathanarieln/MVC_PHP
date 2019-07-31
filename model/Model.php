@@ -33,6 +33,15 @@ class Model
             $this->data[] = null;
     }
 
+    public function deleteById($id){
+        $records = $this->db->query("delete from ".$this->table.
+           " WHERE Id = ".$id);
+        if ($records->num_rows > 0)
+            $this->data[] = $records->fetch_assoc();
+        else
+            $this->data[] = null;
+    }
+
     public static function getAll($table){
         $data = array();
         $dbconection = database::objectConect();

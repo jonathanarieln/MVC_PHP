@@ -6,10 +6,10 @@
   </head>
   <body>
     <form action="./" method="post">
-    Nombre: <input type="text" name="nombre"><br>
-    Apellido: <input type="text" name="apellido"><br>
+    Nombre: <input type="text" name="nombre" value="<?php echo $editNombre ?>"><br>
+    Apellido: <input type="text" name="apellido" value="<?php echo $editApellido ?>"><br>
+    <input type="hidden" name="idEditar" value="<?php echo $_POST["id"];?>">
     <input type="submit" value="ACTUALIZAR">
     </form>
-
   </body>
 </html>

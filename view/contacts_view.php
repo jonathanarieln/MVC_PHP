@@ -31,7 +31,7 @@
             <td>
               <form action="./" method="post">
                 <input type="Hidden" name="id" value="<?php echo $contact["id"];?>">
-                <input type="submit" value="ELIMINAR">
+                <input type="submit" name="eliminar" value="ELIMINAR">
               </form>
             </td>
         </tr>
