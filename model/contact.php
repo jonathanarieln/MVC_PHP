@@ -1,18 +1,12 @@
 <?php
 require_once("model/Model.php");
-/**
- * Created by PhpStorm.
- * User: CONS
- * Date: 16/5/2019
- * Time: 19:01
- */
+
 
 class contact extends Model{
 
     public function __construct(){
         parent::__construct("contacts");
     }
-
     public function __construct1($id){
         parent::__construct("contacts");
         parent::get_data($id);
@@ -22,24 +16,64 @@ class contact extends Model{
         $data = array();
         $dbconection = parent::get_conect();
 
-        $records = $dbconection->query("SELECT * from contacts");
+        $stmt = $dbconection->prepare("SELECT * from contacts");
+         if ( false === $stmt ) {
+             error_log('mysqli prepare() failed: ');
+             error_log( print_r( htmlspecialchars($stmt->error), true ) );
+             exit();
+         }
+         $exec = $stmt->execute();
+         if ( false === $exec ) {
+             error_log('mysqli execute() failed: ');
+             error_log( print_r( htmlspecialchars($stmt->error), true ) );
+         }
 
-        while($record = $records->fetch_assoc()){
-            $data[] = $record;
-        }
+         $result = $stmt->get_result();
 
-        return $data;
+         while($record = $result->fetch_assoc()){
+             $data[] = $record;
+         }
+
+
+         $stmt->close();
+
+         return $data;
        }
 
        public function getContactById($id){
            $data = array();
            $dbconection = parent::get_conect();
 
-           $records = $dbconection->query("SELECT * from contacts WHERE id = $id");
+           $stmt = $dbconection->prepare("SELECT * from contacts WHERE id = ?");
+            if ( false === $stmt ) {
+                error_log('mysqli prepare() failed: ');
+                error_log( print_r( htmlspecialchars($stmt->error), true ) );
+                exit();
+            }
+            $bind = $stmt->bind_param('i', $id);
+            if ( false === $bind ) {
+                error_log('bind_param() failed:');
+                error_log( print_r( htmlspecialchars($stmt->error), true ) );
+                exit();
+            }
+            $exec = $stmt->execute();
+            if ( false === $exec ) {
+                error_log('mysqli execute() failed: ');
+                error_log( print_r( htmlspecialchars($stmt->error), true ) );
+            }
 
-           while($record = $records->fetch_assoc()){
-               $data[] = $record;
-           }
+            $result = $stmt->get_result();
+
+            while($record = $result->fetch_assoc()){
+                $data[] = $record;
+            }
+
+
+            $stmt->close();
+
+
+
+
 
            return $data;
           }

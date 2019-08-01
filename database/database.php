@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: CONS
- * Date: 16/5/2019
- * Time: 19:01
- */
 class database
 {
     private $driver, $host, $user, $pass, $database, $charset;
@@ -28,8 +22,6 @@ class database
         if ($conection->connect_errno) {
             return null;
             echo $conection->connect_errno;
-        }else{
-          echo "conexion exitosa";
         }
 
         return $conection;

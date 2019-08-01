@@ -6,5 +6,4 @@ require_once("view/new_view.php");
 if(isset($_POST["c"])){
   $_SESSION["TIPO"] = $_POST["c"];
 }
-
 ?>

@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: CONS
- * Date: 6/12/2019
- * Time: 8:53 AM
- */
-
 class Model
 {
     private $db;
